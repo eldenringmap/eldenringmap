@@ -135,11 +135,14 @@ $(document).on('click', '.copymarkerurl', function() {
   $temp.remove();
 })
 
+// Serach Dropdown
+/*
 $(document).ready(function () {
 	$('select').selectize({
 		sortField: 'text'
 	});
 });
+*/
 
 // Text Markers
 let  transparentMarker = L.icon({
