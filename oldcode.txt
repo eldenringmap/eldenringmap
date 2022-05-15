@@ -1,0 +1,30 @@
+// Old Popup Code
+/*function addMarker(e) {
+  const markerPlace = document.querySelector(".marker-position");
+  markerPlace.textContent = `new marker: ${e.latlng.lat}, ${e.latlng.lng}`;
+
+  const marker = new L.marker(e.latlng, {
+    draggable: true,
+  })
+    .addTo(map)
+    .bindPopup(buttonRemove);
+
+  marker.on("popupopen", removeMarker);
+
+  marker.on("dragend", dragedMarker);
+};
+
+const buttonRemove = 
+  '<button type="button" class="remove">delete</button><br>L.marker([<span id="coord"></span>]).addTo(map).bindPopup("");<br><select id="select_icon" name="icon" onchange="iconpref(this.value);"><option value="0"></select>';
+
+const markerPlace = document.querySelector(".marker-position");
+
+function removeMarker() {
+  const marker = this;
+  const btn = document.querySelector(".remove");
+  btn.addEventListener("click", function () {
+    markerPlace.textContent = "gone";
+    map.removeLayer(marker);
+  });
+  document.getElementById("coord").innerHTML = `${this.getLatLng().lat}, ${this.getLatLng().lng}`;
+};*/

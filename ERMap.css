@@ -1,0 +1,425 @@
+html {
+	height: 100%;
+	width: 100%;
+}
+
+#coord {
+	font-family: 'EldenRing';
+}
+#map {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	background-color: #161918;
+	overflow: hidden;
+	cursor: url('icons/ui/cursorsmall.png') 64 64, auto;
+}
+@font-face {
+  font-family: 'EldenRing';
+    src: url('fonts/font1.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  position: relative;
+  height: 100%;
+  
+}
+
+/* leaflet-draw OVERRIDE */
+path {
+	z-index: 10000;
+}
+
+img {
+    width:70px; /* you can use % */
+    height: auto;
+}
+
+/* Popup varible style */
+.mtitle {
+	font-size: 40px;
+}
+
+.mregion {
+	text-transform: capitalize;
+}
+
+.text-label {
+	opacity: 1;
+}
+
+/* TEXT MARKERS */
+.leaflet-tooltip-top {
+	font-family: 'EldenRing';
+	color: white;
+	background-image: url('icons/ui/Layer6.png'), url('icons/ui/Layer3.png');
+	background-blend-mode: color;
+	background-size: 100% 105%;
+	font-size: 1.25em;
+	text-shadow: 1px 1px 2px black;
+	/* text-transform: uppercase; */
+	background-color: transparent;
+	border-style: none;
+	padding: 5px 20px;
+	text-align: center;
+}
+
+/* ICON NAMES */
+.leaflet-tooltip-bottom {
+	font-family: 'EldenRing';
+	color: white;
+	/*background-image: url('icons/ui/Layer6.png'), url('icons/ui/Layer3.png');*/
+	background-blend-mode: color;
+	background-size: 100% 105%;
+	font-size: 2em;
+	text-shadow: 1px 1px 5px black;
+	text-transform: capitalize;
+	background-color: transparent;
+	border-style: none;
+	padding: 5px 20px;
+	text-align: center;
+	box-shadow: none;
+}
+
+.leaflet-tooltip-bottom:before {
+	border-bottom-color: transparent;
+}
+
+.context-menu {
+	display: none;
+	z-index: 9000;
+	position: absolute;
+	list-style: none;
+	border: 1px solid #000;
+	background-color: #ffffff;
+	border-radius: 5px;
+	padding: 12px;
+	box-shadow: 5px;
+	font-weight: bold;
+}
+
+.context-menu li {
+	padding: 3px 10px;
+	cursor: pointer;
+}
+
+/* Icon Dropdown Preview */
+#iconprev {
+  width: 128px;
+  height: 128px;
+  background-size: auto 128px;
+  background-repeat: no-repeat;
+  margin: 3px auto;
+  background-position: center;
+}
+
+.leaflet-interactive {
+	cursor: url('icons/ui/cursorsmall.png') 64 64, auto;
+}
+
+.leaflet-popup .leaflet-popup-content {
+	text-align: center;
+}
+
+.hidden-content {display: none;}
+
+.remove-marker.hide {
+    display: none;
+}
+
+.hide {display: none;}
+
+/* UI coordinate style */
+.leaflet-control-coordinates.leaflet-control {
+	background-color: #ffffff;
+	text-align: center;
+}
+.leaflet-control-coordinates .uiElement input {
+	font-family: 'MedievalSharpBook';
+	border-radius: 0px;
+	border: none;
+	background: #ffead3;
+	color: #171717;
+	font-size: 12px;
+	font-weight: bold;
+}
+.leaflet-control-coordinates .uiElement {
+	margin: 0px;
+	width: 120px;
+	height: 26px;
+	display: flex;
+	align-items: center;
+}
+.uiElement {
+	width: auto;
+	/*background: url(../assets/images/bg.png);*/
+	margin: 0px;
+	padding: 2px 5px;
+	box-shadow: inset 0 0px 4px 0px rgb(0, 0, 0);
+	font-family: 'MedievalSharpBook';
+	font-weight: bold;
+	font-size: 12px;
+	letter-spacing: 1px;
+}
+.labelFirst {
+	width: 125px;
+}
+.uiElement.input {
+	width: 120px;
+	text-align: left;
+	height: 26px;
+	display: flex;
+	align-items: center;
+}
+.uiElement span {
+	display: inline-block;
+	margin: 0;
+}
+.leaflet-control-coordinates .uiElement input.inputX {
+	width: 45px;
+	padding: 2px 5px 2px 5px;
+	margin-right: 5px;
+}
+.leaflet-control-coordinates .uiElement input.inputY {
+	width: 45px;
+	padding: 2px 5px 2px 5px;
+}
+.uiElement.input.uiHidden,
+.leaflet-control-coordinates .uiElement.uiHidden {display: none;}
+
+
+/* sidebar images */
+.home			{background-image: url(icons/ui/position-marker.png);}
+.share			{background-image: url(icons/Locations/cave.png);}
+.about			{background-image: url(icons/Locations/cave.png);}
+.inventory		{background-image: url(icons/Locations/cave.png);}
+
+.textmarkers i	{background-image: url(icons/ui/position-marker.png);}
+.cave i 		{background-image: url(icons/Locations/cave.png);}
+.mine i			{background-image: url(icons/Locations/mine.png);}
+.church i		{background-image: url(icons/Locations/church.png);}
+.evergaol i 	{background-image: url(icons/Locations/evergaol.png);}
+.minortree i	{background-image: url(icons/Locations/minortree.png);}
+.windmill i		{background-image: url(icons/Locations/windmill.png);}
+.catacomb i		{background-image: url(icons/Locations/catacomb.png);}
+.shack i		{background-image: url(icons/Locations/shack.png);}
+.well i			{background-image: url(icons/Locations/well.png);}
+.puzzletower i	{background-image: url(icons/Locations/puzzletower.png);}
+.divinetower i	{background-image: url(icons/Locations/divinetower.png);}
+.ruins i		{background-image: url(icons/Locations/ruins.png);}
+.cityruins i	{background-image: url(icons/Locations/cityruins.png);}
+.cathedral i	{background-image: url(icons/Locations/cathedral.png);}
+.precipice i	{background-image: url(icons/Locations/precipice.png);}
+.puzzletower i	{background-image: url(icons/Locations/puzzletower.png);}
+.grace i		{background-image: url(icons/Locations/grace.png);}
+.sunkentown i	{background-image: url(icons/Locations/sunkentown.png);}
+.town i			{background-image: url(icons/Locations/town.png);}
+
+.gestures i		{background-image: url(icons/gestures/thering.png);}
+.talismans i	{background-image: url(icons/talismans/crimsonamber.png);}
+.spells i		{background-image: url(icons/borrowed/bluespell.png);}
+.weapons i		{background-image: url(icons/borrowed/axe.png);}
+.armour i		{background-image: url(icons/borrowed/armour.png);}
+.npc i			{background-image: url(icons/borrowed/npc.png);}
+.boss i			{background-image: url(icons/borrowed/boss.png);}
+.merchants i	{background-image: url(icons/borrowed/merchant.png);}
+.ashofwar i		{background-image: url(icons/borrowed/ashofwar.png);}
+.cookbook i		{background-image: url(icons/borrowed/cookbook.png);}
+.merchants i	{background-image: url(icons/borrowed/merchant.png);}
+.spirit i		{background-image: url(icons/borrowed/spiritash.png);}
+
+/* sidebar layout */
+/* sidebar container */
+.user-list,
+.allmarkers-list,
+.markers-list {
+  float: none;
+  border: none;
+  padding: 6px;
+  margin: 0px;
+  display: inline-block;
+  width: 100%;
+}
+/* On Hover */
+.user-list li,
+.allmarkers-list li,
+.markers-list li:hover {
+  background-color: #76643e;
+  padding-left: 10px;
+}
+.user-list li,
+.allmarkers-list li,
+.markers-list li {
+  display: flex;
+  white-space: normal;
+  width: 100%;
+  overflow: hidden;
+  list-style: none;
+}
+.user-list i,
+.allmarkers-list i,
+.markers-list i {
+  display: block;
+  flex-shrink: 0;
+  width: 75px;
+  height: 75px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  float: left;
+  position: relative;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  margin-top: 4px;
+  line-height: 30px;
+}
+.user-list label,
+.allmarkers-list label,
+.markers-list label {
+  display: flex;
+  align-items: center;
+  font-family: 'EldenRing';
+  font-weight: bold;
+  font-size: 16px;
+  color: #1f201b;
+  width: 100%;
+  padding-left: 5px;
+}
+
+/* checkbox */
+.cc {
+  opacity: 0;
+  position: absolute;
+  width: 46px;
+  height: 45px;
+  margin: 0 15px 0 0;
+  right: 0px; 
+}
+.cc, .cl {
+  display: inline-block;
+  cursor: pointer;
+}
+.cl {
+  position: relative;
+}
+.cl::-moz-selection { background: transparent; }
+.cl::selection { background: transparent; }
+.cc + .cl:after {
+  content: '';
+  background-image: url('icons/ui/cancel.png');
+  background-position: center;
+  background-size: auto 100%;
+  width: 22px;
+  height: 22px;
+  background-repeat: no-repeat;
+  display: inline-block;
+  padding: 2px;
+  right: 10px;
+  text-align: center;
+  vertical-align: top;
+  position: absolute;
+}
+.cc:checked + .cl:after {
+  background-image: url('icons/ui/confirmed.png');
+}
+.cc:focus + .cl {
+  outline: none; /* focus style */
+}
+
+/* sidebar stuff */
+/* Sidebar V2 */
+@media (max-width: 360px) {
+	.sidebar {width: 100%; } }
+@media (min-width: 361px) and (max-width: 991px) {
+	.sidebar {width: 340px; } }
+@media (min-width: 992px) and (max-width: 1199px) {
+	.sidebar {width: 340px; } }
+@media (min-width: 1200px) {
+	.sidebar {width: 340px; } }
+			
+@media (max-width: 320px) {
+	.sidebar-pane {min-width: 268px; } }
+@media (max-width: 360px) {
+	.sidebar-pane {width: 100%; } }
+@media (min-width: 361px) and (max-width: 991px) {
+	.sidebar-pane {min-width: 300px; } }
+@media (min-width: 992px) and (max-width: 1199px) {
+	.sidebar-pane {min-width: 300px; } }
+@media (min-width: 1200px) {
+	.sidebar-pane {min-width: 300px; } }
+	
+	.sidebar.collapsed {width: 40px; }
+@media (min-width: 768px) {
+	.sidebar {transition: width 500ms; } }
+@media (min-width: 320px) and (max-width: 767px) {
+	.sidebar {width: 320px; } }
+@media (min-width: 768px) and (max-width: 991px) {
+	.sidebar {width: 350px; } }
+@media (min-width: 992px) and (max-width: 1199px) {
+	.sidebar {width: 390px; } }
+@media (min-width: 1200px) {
+	.sidebar {width: 400px; } }
+
+.sidebar.collapsed {
+	width: 41px;
+}
+@media (min-width: 768px) {
+	.sidebar {
+		top: 0px;
+		bottom: 0px;
+		transition: width 500ms;
+		border-radius: 0px; }
+	.sidebar-left {
+		left: 0px; }
+	.sidebar.leaflet-touch {
+		border: none; }
+}
+.sidebar-left .sidebar-tabs {
+	display: block;
+	background: #d8c8af;
+	background-image: url(icons/ui/Layer3.png);
+	background-repeat: repeat-y;
+	background-position: center;
+	border-right: 1px solid #76643e;
+	z-index: 1000;
+}
+.sidebar-pane {
+	padding: 10px 20px 10px 15px;
+	background-color: #c2ab81
+}
+
+.left-arrow {
+	background-image: url(icons/ui/return-arrow.png);
+	background-size: 28px;
+	width: 40px;
+	height: 40px;
+	display: inline-block;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.sidebar-tabs > li:hover, .sidebar-tabs > ul > li:hover {
+	background-color: #c2ab81;
+}
+.sidebar-tabs > ul > li.active i {
+	-webkit-filter: grayscale(0);
+	background-color: #c2ab81;
+}
+.sidebar-tabs i {
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 40px;
+	-webkit-filter: grayscale(1);
+}
+.sidebar-tabs i:hover {
+	-webkit-filter: grayscale(0);
+}

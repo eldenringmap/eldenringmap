@@ -1,10 +1,253 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    
-  </head>
-  <body>
-    <p>hello
-    <p>it me
-  </body>
+	<head>
+		<title>ER Map</title>
+		 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin=""/>
+		<link rel="stylesheet" href="leaflet-sidebar.css">
+		
+		<!-- MAP STYLE SHEET -->
+		<link type="text/css" rel="stylesheet" href="ERMap.css">
+		
+		<!-- GEOJSON 
+		<script src="drawn_polygons.geojson"></script>
+		-->
+		
+		<!-- LEAFLET-DRAW STYLE SHEET -->
+		<link type="text/css" rel="stylesheet" href="src/leaflet.draw.css">
+		
+		<meta http-equiv='cache-control' content='no-cache'> 
+		<meta http-equiv='expires' content='0'> 
+		<meta http-equiv='pragma' content='no-cache'>
+		
+		
+	</head>
+	<body>
+		<div id="sidebar" class="sidebar collapsed">
+			<!-- Nav Tabs -->
+			<div class="sidebar-tabs">
+				<ul role="tablist">
+					<li><a href="#home" role="tab"><i class="home"></i></a></li>
+					<li><a href="#share" role="tab"><i class="share"></i></a></li>
+					<li><a href="#about" role="tab"><i class="about"></i></a></li>
+					<li><a href="#backup" role="tab"><i class="inventory"></i></a></li>
+				</ul>
+				<ul role="tablist"></ul>
+			</div>
+			<div class="sidebar-content">
+				<div class="sidebar-pane" id="home">
+					<span class="sidebar-close">
+						<i class="left-arrow"></i>
+					</span>
+					<div class="content">
+						<ul class="markers-list">
+							<li class="textmarkers">
+								<i></i>
+								<input type="checkbox" id="textmarkers" class="cc">
+								<label for="textmarkers" class="cl">Locations</label>
+							</li>
+							<li class="grace">
+								<i></i>
+								<input type="checkbox" id="grace" class="cc">
+								<label for="grace" class="cl">Site of Grace</label>
+							</li>
+							<li class="cave">
+								<i></i>
+								<input type="checkbox" id="cave" class="cc">
+								<label for="cave" class="cl">Cave</label>
+							</li>
+							<li class="church">
+								<i></i>
+								<input type="checkbox" id="church" class="cc">
+								<label for="church" class="cl">Church</label>
+							</li>
+							<li class="mine">
+								<i></i>
+								<input type="checkbox" id="mine" class="cc">
+								<label for="mine" class="cl">Mine</label>
+							</li>
+							<li class="evergaol">
+								<i></i>
+								<input type="checkbox" id="evergaol" class="cc">
+								<label for="evergaol" class="cl">Evergaol</label>
+							</li>
+							<li class="minortree">
+								<i></i>
+								<input type="checkbox" id="minortree" class="cc">
+								<label for="minortree" class="cl">Minor Erd Tree</label>
+							</li>
+							<li class="catacomb">
+								<i></i>
+								<input type="checkbox" id="catacomb" class="cc">
+								<label for="catacomb" class="cl">Catacomb</label>
+							</li>
+							<li class="well">
+								<i></i>
+								<input type="checkbox" id="well" class="cc">
+								<label for="well" class="cl">Well</label>
+							</li>
+							<li class="windmill">
+								<i></i>
+								<input type="checkbox" id="windmill" class="cc">
+								<label for="windmill" class="cl">Windmill</label>
+							</li>
+							<li class="ruins">
+								<i></i>
+								<input type="checkbox" id="ruins" class="cc">
+								<label for="ruins" class="cl">Ruins</label>
+							</li>
+							<li class="sunkentown">
+								<i></i>
+								<input type="checkbox" id="sunkentown" class="cc">
+								<label for="sunkentown" class="cl">Sunken Town</label>
+							</li>
+							<li class="town">
+								<i></i>
+								<input type="checkbox" id="town" class="cc">
+								<label for="town" class="cl">Town</label>
+							</li>
+							<li class="cathedral">
+								<i></i>
+								<input type="checkbox" id="cathedral" class="cc">
+								<label for="cathedral" class="cl">Cathedral</label>
+							</li>
+							<li class="cityruins">
+								<i></i>
+								<input type="checkbox" id="cityruins" class="cc">
+								<label for="cityruins" class="cl">City Ruins</label>
+							</li>
+							<li class="divinetower">
+								<i></i>
+								<input type="checkbox" id="divinetower" class="cc">
+								<label for="divinetower" class="cl">Divine Tower</label>
+							</li>
+							<li class="puzzletower">
+								<i></i>
+								<input type="checkbox" id="puzzletower" class="cc">
+								<label for="puzzletower" class="cl">Magic Tower</label>
+							</li>
+							<li class="shack">
+								<i></i>
+								<input type="checkbox" id="shack" class="cc">
+								<label for="shack" class="cl">Shack</label>
+							</li>
+							<li class="precipice">
+								<i></i>
+								<input type="checkbox" id="precipice" class="cc">
+								<label for="precipice" class="cl">Precipice</label>
+							</li>
+							<li class="gestures">
+								<i></i>
+								<input type="checkbox" id="gestures" class="cc">
+								<label for="gestures" class="cl">Gestures</label>
+							</li>
+							<li class="talismans">
+								<i></i>
+								<input type="checkbox" id="talismans" class="cc">
+								<label for="talismans" class="cl">Talismans</label>
+							</li>
+							<li class="spells">
+								<i></i>
+								<input type="checkbox" id="spells" class="cc">
+								<label for="spells" class="cl">Spells</label>
+							</li>
+							<li class="weapons">
+								<i></i>
+								<input type="checkbox" id="weapons" class="cc">
+								<label for="weapons" class="cl">Weapons</label>
+							</li>
+							<li class="merchants">
+								<i></i>
+								<input type="checkbox" id="merchant" class="cc">
+								<label for="merchants" class="cl">Merchants</label>
+							</li>
+							<li class="boss">
+								<i></i>
+								<input type="checkbox" id="boss" class="cc">
+								<label for="boss" class="cl">Boss</label>
+							</li>
+							<li class="armour">
+								<i></i>
+								<input type="checkbox" id="armour" class="cc">
+								<label for="armour" class="cl">Armour</label>
+							</li>
+							<li class="ashofwar">
+								<i></i>
+								<input type="checkbox" id="ashofwar" class="cc">
+								<label for="ashofwar" class="cl">Ash of War</label>
+							</li>
+							<li class="cookbook">
+								<i></i>
+								<input type="checkbox" id="cookbook" class="cc">
+								<label for="cookbook" class="cl">Cookbook</label>
+							</li>
+							<li class="npc">
+								<i></i>
+								<input type="checkbox" id="npc" class="cc">
+								<label for="npc" class="cl">NPC</label>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- Map Box -->
+		<div id="map" class="sidebar-map"></div>
+		
+		<!-- jQuery -->
+		<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+		<!-- Leaflet -->
+ 		<script type="text/javascript" src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+		<script type="text/javascript" src="leaflet-coordinates.js"></script>
+		<script type="text/javascript" src="leaflet-hash.min.js"></script>		
+		<script type="text/javascript" src="leaflet-sidebar.js"></script>
+		
+		<!-- Leaflet.Draw -->
+		<script src="src/Leaflet.draw.js"></script>
+		<script src="src/Leaflet.Draw.Event.js"></script>
+
+		<script src="src/edit/handler/Edit.Poly.js"></script>
+		<script src="src/edit/handler/Edit.SimpleShape.js"></script>
+		<script src="src/edit/handler/Edit.Rectangle.js"></script>
+		<script src="src/edit/handler/Edit.Marker.js"></script>
+		<script src="src/edit/handler/Edit.CircleMarker.js"></script>
+		<script src="src/edit/handler/Edit.Circle.js"></script>
+
+		<script src="src/draw/handler/Draw.Feature.js"></script>
+		<script src="src/draw/handler/Draw.Polyline.js"></script>
+		<script src="src/draw/handler/Draw.Polygon.js"></script>
+		<script src="src/draw/handler/Draw.SimpleShape.js"></script>
+		<script src="src/draw/handler/Draw.Rectangle.js"></script>
+		<script src="src/draw/handler/Draw.Circle.js"></script>
+		<script src="src/draw/handler/Draw.Marker.js"></script>
+		<script src="src/draw/handler/Draw.CircleMarker.js"></script>
+
+		<script src="src/ext/TouchEvents.js"></script>
+		<script src="src/ext/LatLngUtil.js"></script>
+		<script src="src/ext/GeometryUtil.js"></script>
+		<script src="src/ext/LineUtil.Intersect.js"></script>
+		<script src="src/ext/Polyline.Intersect.js"></script>
+		<script src="src/ext/Polygon.Intersect.js"></script>
+
+		<script src="src/Control.Draw.js"></script>
+		<script src="src/Tooltip.js"></script>
+		<script src="src/Toolbar.js"></script>
+
+		<script src="src/draw/DrawToolbar.js"></script>
+		<script src="src/edit/EditToolbar.js"></script>
+		<script src="src/edit/handler/EditToolbar.Edit.js"></script>
+		<script src="src/edit/handler/EditToolbar.Delete.js"></script>
+		
+		<!-- Functionality -->
+		<script type="text/javascript" src="smooth-zoom.js"></script>
+		<script type="text/javascript" src="marker-data.js"></script>
+		<script type="text/javascript" src="ERMap.js"></script>
+		
+		<!-- Must be after ERMap.js -->
+		<script type="text/javascript" src="ui-coordinates.js"></script>
+		<script type="text/javascript" src="url-coordinates.js"></script>
+		<!--<script type="text/javascript" src="context-menu.js"></script>-->
+		
+		
+	</body>
 </html>
