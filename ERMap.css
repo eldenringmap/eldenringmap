@@ -36,8 +36,9 @@ path {
 	z-index: 10000;
 }
 
+/*
 img {
-    width:70px; /* you can use % */
+    width:70px; /* you can use % *//*
     height: auto;
 }
 
