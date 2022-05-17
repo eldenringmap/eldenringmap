@@ -299,7 +299,6 @@ function onPopupOpen(e) {
 				let  editedicon = $(this).parent().find('select[name=icon]').val();
 				let  editedtitle = $(this).parent().find('#editedtitle').val();
 				let  editeddesc = $(this).parent().find('#editeddesc').val();
-				let  editedgroup = $(this).parent().find('.mgroup').val();
 				
 				let  markerlink = (url+"?m="+clickedMarkerCoords.lng+","+clickedMarkerCoords.lat+"&title="+editedtitle+"&desc="+editeddesc+"&icon="+editedicon+"&");
 				markerlink = encodeURI(markerlink);
@@ -342,6 +341,7 @@ function onPopupOpen(e) {
 			storageMarkers[i].desc = editeddesc;
 			storageMarkers[i].icon = (markerIconTypes[editedicon]);
 			storageMarkers[i].iconvalue = editedicon;
+			let oldGroup = storageMarkers[i].group;
 			storageMarkers[i].group = mapMarkers[$(this).parent().find('select[name=icon]').val()].icon
 			
 			// User markers defaults
@@ -363,9 +363,8 @@ function onPopupOpen(e) {
 			}
 			// Add edited marker to layerGroups.group
 			editedMarker.addTo(layerGroups[newGroup]);
-			console.log(groupUser.hasLayer(_this));
-			console.log(this.group);
-			L.layerGroup(layerGroups[_this.group]).hasLayer(_this);
+			groupUser.clearLayers();
+			L.layerGroup(layerGroups[oldGroup]).removeLayer(_this);
 			// Remove old marker from map
 			map.removeLayer(_this);
 			// Add edited marker to map
