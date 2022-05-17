@@ -36,12 +36,6 @@ path {
 	z-index: 10000;
 }
 
-/*
-img {
-    width:70px; /* you can use % *//*
-    height: auto;
-}
-
 /* Popup varible style */
 .mtitle {
 	font-size: 40px;
@@ -55,6 +49,11 @@ img {
 	opacity: 1;
 }
 
+.leaflet-tooltip {
+	.min-width: 100px;
+	.min-height: 100px;
+}
+
 /* TEXT MARKERS */
 .leaflet-tooltip-top {
 	font-family: 'EldenRing';
@@ -64,7 +63,6 @@ img {
 	background-size: 100% 105%;
 	font-size: 1.25em;
 	text-shadow: 1px 1px 2px black;
-	/* text-transform: uppercase; */
 	background-color: transparent;
 	border-style: none;
 	padding: 5px 20px;
@@ -75,7 +73,6 @@ img {
 .leaflet-tooltip-bottom {
 	font-family: 'EldenRing';
 	color: white;
-	/*background-image: url('icons/ui/Layer6.png'), url('icons/ui/Layer3.png');*/
 	background-blend-mode: color;
 	background-size: 100% 105%;
 	font-size: 2em;
@@ -92,24 +89,6 @@ img {
 	border-bottom-color: transparent;
 }
 
-.context-menu {
-	display: none;
-	z-index: 9000;
-	position: absolute;
-	list-style: none;
-	border: 1px solid #000;
-	background-color: #ffffff;
-	border-radius: 5px;
-	padding: 12px;
-	box-shadow: 5px;
-	font-weight: bold;
-}
-
-.context-menu li {
-	padding: 3px 10px;
-	cursor: pointer;
-}
-
 /* Icon Dropdown Preview */
 #iconprev {
   width: 128px;
@@ -124,15 +103,11 @@ img {
 	cursor: url('icons/ui/cursorsmall.png') 64 64, auto;
 }
 
-.leaflet-popup .leaflet-popup-content {
-	text-align: center;
-}
+.leaflet-popup .leaflet-popup-content {text-align: center;}
 
 .hidden-content {display: none;}
 
-.remove-marker.hide {
-    display: none;
-}
+.remove-marker.hide {display: none;}
 
 .hide {display: none;}
 

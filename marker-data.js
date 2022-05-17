@@ -13,6 +13,10 @@ var textMarkers =
 	"coords": [250,990],
 	"zoom": "region"
 }, {
+	"name": "<span>Weeping Peninsula</span>",
+	"coords": [250,990],
+	"zoom": "subregion"
+}, {
 	"name": "<span>Liurnia of the Lakes</span>",
 	"coords": [1000,530],
 	"zoom": "region"
@@ -36,6 +40,10 @@ var textMarkers =
 	"name": "<span>Crumbling Farum Azula</span>",
 	"coords": [1150,2140],
 	"zoom": "region"
+}, {
+	"name": "<span>Crumbling Farum Azula</span>",
+	"coords": [1150,2140],
+	"zoom": "subregion"
 }, {
 	"name": "<span>Stormhill</span>",
 	"coords": [600,900],
