@@ -158,28 +158,22 @@ map.on('zoomend', function(e) {
 		
 	
 	// Scale image size on zoom
-	let iconPxSize = 110;
-	let minSize = 10;
-	let maxSize = 100;
-	let originalWidth = $('.leaflet-marker-pane img').css('width', '').width();
-	let originalHeight = $('.leaflet-marker-pane img').css('height', '').height();
+	let j = 0;
 	
-	//$('.leaflet-marker-pane img').css('width', (iconPxSize - originalWidth / size));
-	//$('.leaflet-marker-pane img').css('height', 100 - originalHeight / size);
-	//$('.leaflet-marker-pane img').css('margin-left', -(iconPxSize - originalWidth / size) / 2);
-	//$('.leaflet-marker-pane img').css('margin-top', -(iconPxSize - originalHeight / size) / 2);
+	if (j != 0) {
+		map.eachLayer(function(e) {
+			if (e._source != undefined) {
+				let currentTitle = e._source.options.title;
+				let originalWidth = $('.leaflet-marker-pane img[title='+currentTitle+']').css('width', '').width();
+				let originalHeight = $('.leaflet-marker-pane img[title='+currentTitle+']').css('height', '').height();
+				console.log(currentTitle + ': ' + originalWidth + 'x' + originalHeight);
+				
+				$('.leaflet-marker-pane img[title='+currentTitle+']').css('width', originalWidth / 2);
+			}
+		});
+	}
+	j = 1;
 });
-
-
-// Change marker image on map
-function iconpref(value) {
-	document.getElementById("iconprev").style.backgroundImage = "url("+markerIconTypes[value].options.iconUrl+")";
-};
-// Change marker image and group in popup
-function titlepref(value) {
-	document.getElementById("titleprev").value = value.replace(/_/gi, " ");
-	document.getElementById("grouptype").value = value.replace(/_/gi, " ");
-};
 
 // Limit input of coordinates range
 function numonly(e){

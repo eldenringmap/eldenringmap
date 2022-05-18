@@ -36,9 +36,10 @@ path {
 	z-index: 10000;
 }
 
+
 /* Popup varible style */
-.mtitle {
-	font-size: 40px;
+.mname, .chooseIcon {
+	font-size: 30px;
 }
 
 .mregion {
@@ -49,10 +50,12 @@ path {
 	opacity: 1;
 }
 
-.leaflet-tooltip {
-	.min-width: 100px;
-	.min-height: 100px;
+/*
+.leaflet-marker-pane img {
+	max-width: 100px;
+	max-height: 100px;
 }
+
 
 /* TEXT MARKERS */
 .leaflet-tooltip-top {
@@ -75,12 +78,16 @@ path {
 	color: white;
 	background-blend-mode: color;
 	background-size: 100% 105%;
-	font-size: 2em;
-	text-shadow: 1px 1px 5px black;
+	font-size: 22px;
+	text-shadow: 2px 2px 5px black;
 	text-transform: capitalize;
 	background-color: transparent;
+	white-space: normal;
+	line-height: 1;
 	border-style: none;
-	padding: 5px 20px;
+	padding: 0px 20px;
+	margin-top: 0px;
+	margin-bottom: 20px;
 	text-align: center;
 	box-shadow: none;
 }
@@ -91,7 +98,7 @@ path {
 
 /* Icon Dropdown Preview */
 #iconprev {
-  width: 128px;
+  width: auto;
   height: 128px;
   background-size: auto 128px;
   background-repeat: no-repeat;

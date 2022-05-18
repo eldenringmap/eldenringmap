@@ -8,7 +8,7 @@ let url = ('https://' + window.location.hostname + '/');
 
 // Marker icons
 let mapMarkers = [
-	{icon:"grace",			width: "156", height: "155"},
+	{icon:"grace",			width: "130", height: "130"},
 	{icon:"cave",			width: "199", height: "162"},
 	{icon:"church",			width: "140", height: "187"},
 	{icon:"mine",			width: "182", height: "154"},
@@ -17,12 +17,12 @@ let mapMarkers = [
 	{icon:"catacomb",		width: "157", height: "137"},
 	{icon:"well",			width: "199", height: "129"},
 	{icon:"windmill",		width: "153", height: "171"},
-	{icon:"ruins",			width: "261", height: "158"},
+	{icon:"ruins",			width: "261", height: "159"},
 	{icon:"sunkentown",		width: "229", height: "129"},
 	{icon:"town",			width: "224", height: "109"},
 	{icon:"cathedral",		width: "276", height: "210"},
 	{icon:"cityruins",		width: "250", height: "172"},
-	{icon:"divinetower",	width: "115", height: "100"},
+	{icon:"divinetower",	width: "115", height: "235"},
 	{icon:"puzzletower",	width: "110", height: "223"},
 	{icon:"shack",			width: "233", height: "135"},
 	{icon:"precipice",		width: "110", height: "223"},
@@ -38,6 +38,16 @@ let mapMarkers = [
 	{icon:"npc",			width: "80", height: "80"},
 ];
 
+// Change marker image on map
+function iconpref(value) {
+	document.getElementById("iconprev").style.backgroundImage = "url("+markerIconTypes[value].options.iconUrl+")";
+};
+// Change marker image and group in popup
+function titlepref(value) {
+	document.getElementById("titleprev").value = value.replace(/_/gi, " ");
+	document.getElementById("grouptype").value = value.replace(/_/gi, " ");
+};
+
 var  markerIconTypes = [];
 for (let  i in mapMarkers) {
 	let  icon = mapMarkers[i].icon;
@@ -48,10 +58,10 @@ for (let  i in mapMarkers) {
 	markerIconTypes[i] = L.icon({
 		className: "",
 		iconUrl: iconsUrl + icon.replace(/ /g, "") + '.png',
-		iconSize: [iWidth, iHeight],
-		iconAnchor: [iWidth / 2, iHeight / 2,],
-		popupAnchor: [0, -iHeight / 2],
-		tooltipAnchor: [0, iHeight / 10]
+		iconSize: [iWidth / 2, iHeight / 2],
+		iconAnchor: [iWidth / 4, iHeight / 4,],
+		popupAnchor: [0, -iHeight / 4],
+		tooltipAnchor: [0, -11 + iHeight / 4]
 	});
 };
 
@@ -146,7 +156,7 @@ function initUserLayerGroup() {
 				iconSize: storageMarkers[i].icon.options.iconSize,
 				iconAnchor: storageMarkers[i].icon.options.iconAnchor,
 				popupAnchor:  storageMarkers[i].icon.options.popupAnchor,
-				//tooltipAnchor: markerIconTypes[i].options.tooltipAnchor,
+				tooltipAnchor: storageMarkers[i].icon.options.tooltipAnchor,
 				className: storageMarkers[i].icon.options.className,
 			});
 			
@@ -155,8 +165,6 @@ function initUserLayerGroup() {
 				<div class="popcontent">\
 					<p class="mname">'+name+'</p>\
 					<p class="mdesc">'+desc+'</p>\
-					<p class="mregion">'+region+'</p>\
-					<p class="mgroup">'+group+'</p>\
 					<span class="mcoords">X: '+y+' Y: '+x+'</span>\
 				</div>\
 				<span class="markerlink hide">'+markerlink+'</span>\
@@ -166,17 +174,17 @@ function initUserLayerGroup() {
 				</button>\
 				<button class="edit-marker">Edit marker</button>\
 				<div id="edit-dialog" class="hide">\
-				<div class="chooseIcon">Choose Icon:</div>\
-				<div id="iconprev" style="background-image:url(\''+iconUrl+'\')"></div>\
-				<select id="select_icon" name="icon" onchange="iconpref(this.value);">';
+					<div class="chooseIcon">Choose Icon:</div>\
+					<div id="iconprev" style="background-image:url(\''+iconUrl+'\')"></div>\
+					<select id="select_icon" name="icon" onchange="iconpref(this.value);">';
 			for (let  j in mapMarkers) {
 				popupcontent +='<option value="'+j+'">'+mapMarkers[j].icon.replace(/_/gi, " ")+'</option>';
 			};
 			popupcontent = popupcontent+'</select>\
-				<input type="text" id="editedtitle" name="name" value="'+name+'">\
-				<textarea id="editeddesc" name="desc">'+desc+'</textarea>\
-				<button class="cancel">Cancel</button>\
-				<button class="save-marker">Save</button>\
+					<input type="text" id="editedtitle" name="name" value="'+name+'">\
+					<textarea id="editeddesc" name="desc">'+desc+'</textarea>\
+					<button class="cancel">Cancel</button>\
+					<button class="save-marker">Save</button>\
 				</div>\
 				<button class="remove-marker">Remove marker</button>\
 				<div id="remove-dialog" class="hide">\
@@ -187,7 +195,7 @@ function initUserLayerGroup() {
 			if (layerGroups[group] == undefined) {
 				layerGroups[group] = new L.LayerGroup();
 			}
-			let  marker = new L.marker([x, y], {draggable: false,icon: customIcon,title: customIcon}).bindPopup(popupcontent);
+			let  marker = new L.marker([x, y], {draggable: false,icon: customIcon,title: group}).bindPopup(popupcontent);
 			//marker.on("dragend", dragedMarker);
 			marker.bindTooltip((name), {permanent: true, direction: 'bottom', offset: L.point(0,0)}).openTooltip();
 			marker.on("popupopen", onPopupOpen);
@@ -223,6 +231,7 @@ function onPopupOpen(e) {
 	
 	// Marker Log data
 	console.log(layerGroups);
+	
 	
 	// Delete Marker
 	$(document).off('click', '.remove-marker')
@@ -390,12 +399,6 @@ function addMarkerText(lat,long) {
 			</select>\
 			<div class="markertitle">Marker Name:</div>\
 			<input type="text" id="titleprev" name="name" value="grace">\
-			<div class="chooseRegion">Marker Region:</div>\
-			<select id="select_region" name="region">\
-				<option value="limgrave">Limgrave</option>\
-				<option value="weeping">Weeping Peninsula</option>\
-				<option value="liurnia">Liurnia of the Lakes</option>\
-			</select>\
 			<div class="markerdesc">Marker Description:</div>\
 			<textarea name="desc" onclick="this.value=\'\'; this.onclick = function(){}"></textarea>\
 			<table class="coordsinputs">\
@@ -449,9 +452,7 @@ function addMarkerText(lat,long) {
 		let  popupcontent = '\
 		<div class="popcontent">\
 			<p class="mname">'+getAObj(postData,'name')+'</p>\
-			<p class="mregion">'+getAObj(postData, 'region')+'</p>\
 			<p class="mdesc">'+getAObj(postData,'desc')+'</p>\
-			<p class=mgroup">'+getAObj(postData,'group')+'</p>\
 			<span class="mcoords">[ '+getAObj(postData,'mlon')+' , '+getAObj(postData,'mlat')+']</span>\
 		</div>\
 		<span class="markerlink hide">'+markerlink+'</span>\
@@ -479,14 +480,14 @@ function addMarkerText(lat,long) {
 			<button class="no">No</button>\
 		</div>'
 		
-		let  newMarker = new L.marker({lat: lat, lng: lon},{draggable: false,icon: markerIconTypes[getAObj(postData,"icon")]});
+		let  newMarker = new L.marker({lat: lat, lng: lon},{draggable: false,icon: markerIconTypes[getAObj(postData,"icon")], title: getAObj(postData,'group')});
 		newMarker.bindPopup(popupcontent);
 		newMarker.addTo(map);
 		newMarker.bindTooltip(getAObj(postData, 'name'), {permanent: true, direction: 'bottom', offset: L.point(0,0)}).openTooltip();
 		newMarker.on("popupopen", onPopupOpen);
 		markersUser.push(newMarker);
-			console.log(newMarker);
-		groupUser.addLayer(newMarker);
+			console.log(groupUser);
+		L.layerGroup(layerGroups[getAObj(postData,'group')]).addLayer(newMarker);
 		localStorage.mapUserMarkers = JSON.stringify(storageMarkers);
 		if (layerGroups[getAObj(postData,'group')] == undefined) {
 			layerGroups[getAObj(postData,'group')] = new L.layerGroup();
