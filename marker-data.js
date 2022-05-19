@@ -3,91 +3,113 @@ var textMarkers =
 [{
 	"name": "<span>The Lands Between</span>",
 	"coords": [1260,1080],
-	"zoom": "whole"
+	"zoom": "whole",
+	"level": "overworld"
 }, {
 	"name": "<span>Limgrave</span>",
 	"coords": [540,1010],
-	"zoom": "region"
+	"zoom": "region",
+	"level": "underground"
 }, {
 	"name": "<span>Weeping Peninsula</span>",
 	"coords": [250,990],
-	"zoom": "region"
+	"zoom": "region",
+	"level": "underground"
 }, {
 	"name": "<span>Weeping Peninsula</span>",
 	"coords": [250,990],
-	"zoom": "subregion"
+	"zoom": "subregion",
+	"level": "underground"
 }, {
 	"name": "<span>Liurnia of the Lakes</span>",
 	"coords": [1000,530],
-	"zoom": "region"
+	"zoom": "region",
+	"level": "underground"
 }, {
 	"name": "<span>Caelid</span>",
 	"coords": [630,1400],
-	"zoom": "region"
+	"zoom": "region",
+	"level": "underground"
 }, {
 	"name": "<span>Altus Plateau</span>",
 	"coords": [1500,820],
-	"zoom": "region"
+	"zoom": "region",
+	"level": "underground"
 }, {
 	"name": "<span>Mountaintops of the Giants</span>",
 	"coords": [1650,1580],
-	"zoom": "region"
+	"zoom": "region",
+	"level": "underground"
 }, {
 	"name": "<span>Consecrated Snowfield</span>",
 	"coords": [1720,1330],
-	"zoom": "subregion"
+	"zoom": "subregion",
+	"level": "underground"
 }, {
 	"name": "<span>Crumbling Farum Azula</span>",
 	"coords": [1150,2140],
-	"zoom": "region"
+	"zoom": "region",
+	"level": "underground"
 }, {
 	"name": "<span>Crumbling Farum Azula</span>",
 	"coords": [1150,2140],
-	"zoom": "subregion"
+	"zoom": "subregion",
+	"level": "underground"
 }, {
 	"name": "<span>Stormhill</span>",
 	"coords": [600,900],
-	"zoom": "subregion"
+	"zoom": "subregion",
+	"level": "underground"
 }, {
 	"name": "<span>Mistwood</span>",
 	"coords": [515,1115],
-	"zoom": "subregion"
+	"zoom": "subregion",
+	"level": "underground"
 }, {
 	"name": "<span>Limgrave Main</span>",
 	"coords": [485,980],
-	"zoom": "subregion"
+	"zoom": "subregion",
+	"level": "underground"
 }, {
 	"name": "<span>Church of Dragon Communion</span>",
 	"coords": [390,853],
-	"zoom": "subregion"
+	"zoom": "subregion",
+	"level": "underground"
 }, {
 	"name": "<span>Swamp of Aeonia</span>",
 	"coords": [592,1348],
-	"zoom": "subregion"
+	"zoom": "subregion",
+	"level": "underground"
 }, {
 	"name": "<span>Capital Outskirts</span>",
 	"coords": [1490,982],
-	"zoom": "subregion"
+	"zoom": "subregion",
+	"level": "underground"
 }, {
 	"name": "<span>Leyndell, Royal Capital</span>",
 	"coords": [1401,1066],
-	"zoom": "subregion"
+	"zoom": "subregion",
+	"level": "underground"
 }, {
 	"name": "<span>Mt Gelmir </span>",
 	"coords": [1537,575],
-	"zoom": "subregion"
+	"zoom": "subregion",
+	"level": "underground"
 }, {
 	"name": "<span>Forbidden Lands</span>",
 	"coords": [1450,1328],
-	"zoom": "subregion"
+	"zoom": "subregion",
+	"level": "underground"
 }, {
 	"name": "<span>Miquella's Haligtree</span>",
 	"coords": [2047,1404],
-	"zoom": "subregion"
+	"zoom": "subregion",
+	"level": "underground"
 }, {
 	"name": "<span>Flame Peak</span>",
 	"coords": [1504,1611],
-	"zoom": "subregion"
+	"zoom": "subregion",
+	"level": "underground"
 }]
 
 // GAME MARKERS

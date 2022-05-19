@@ -29,7 +29,7 @@ let mapMarkers = [
 	{icon:"gesture",		width: "110", height: "223"},
 	{icon:"talisman",		width: "80", height: "80"},
 	{icon:"spell",			width: "80", height: "80"},
-	{icon:"weapon",			width: "80", height: "80"},
+	{icon:"weapons",		width: "80", height: "80"},
 	{icon:"merchant",		width: "80", height: "80"},
 	{icon:"boss",			width: "80", height: "80"},
 	{icon:"armour",			width: "80", height: "80"},
@@ -67,7 +67,7 @@ for (let  i in mapMarkers) {
 
 // Text Markers
 let  transparentMarker = L.icon({
-	iconUrl: iconsUrl+'',
+	iconUrl: 'icons/ui/Untitled-1.png',
 	iconSize: [1, 1],
 	iconAnchor: [iconAnchorWidth, iconAnchorHeight],
 	popupAnchor: [0, -18]
@@ -79,14 +79,9 @@ for (let  i = 0; i < textMarkers.length; i++) {
 		layerGroups.textmarkers = new L.LayerGroup();
 	}
 	// Add the marker
-	let  textMarker = new L.marker(textMarkers[i].coords, { opacity: 1.0, icon: transparentMarker }); //opacity may be set to zero
-	textMarker.bindTooltip(textMarkers[i].name, {permanent: true, direction: "top", className: textMarkers[i].zoom, offset: [0, 0] });
-	textMarker.addTo(layerGroups.textmarkers); // Adds the text markers to map.
-	
-	// Set ID for zoom levels
-	layerGroups.textmarkers.eachLayer (function (e) {
-		e.layerID = textMarkers[i].zoom;
-	});
+	let  textMarker = new L.marker(textMarkers[i].coords, { opacity: 1.0, icon: transparentMarker, level: textMarkers[i].level}); //opacity may be set to zero
+	textMarker.bindTooltip(textMarkers[i].name, {permanent: true, direction: "top", className: textMarkers[i].zoom + " " + textMarkers[i].level, attribution: textMarkers[i].level, offset: [0, 0] });
+	textMarker.addTo(layerGroups.textmarkers); // Adds the text markers to layerGroups.
 }
 /*
 // Markers loaded from code

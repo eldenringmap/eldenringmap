@@ -99,6 +99,27 @@ function toggle(element, layer) {
 	if (layerGroups[layer] != undefined) {
 		if (element.checked) {
 			map.addLayer(layerGroups[layer]);
+			if (map.hasLayer(underground)) {
+				map.eachLayer(function (e) {
+					if (e.options.level == "overworld") {
+						console.log("OVERWORLD");
+						$('.overworld').css('visibility', 'hidden');
+					} else if (e.options.level == "underground") {
+						console.log("UNDERGROUND");
+						$('.underground').css('visibility', 'visible');
+					}
+				});
+			} else {
+				map.eachLayer(function (e) {
+					if (e.options.level == "overworld") {
+						console.log("OVERWORLD");
+						$('.overworld').css('visibility', 'visible');
+					} else if (e.options.level == "underground") {
+						console.log("UNDERGROUND");
+						$('.underground').css('visibility', 'hidden');
+					}
+				});
+			}
 		} else {
 			//$('#allmarkers').prop('checked', false);
 			map.removeLayer(layerGroups[layer]);
@@ -111,10 +132,10 @@ $('.markers-list input').each(function() {
 		toggle(this, this.id);
 		if (this.id == "textmarkers") {
 			if ($(this.id).is(':checked')) {
-				$('.leaflet-tooltip-top').css('visibility', 'hidden');
+				//$('.leaflet-tooltip-top').css('visibility', 'hidden');
 				//$('.leaflet-tooltip-top.secondary').css('visibility', 'hidden');
 			} else {
-				$('.leaflet-tooltip-top').css('visibility', 'visible');
+				//$('.leaflet-tooltip-top').css('visibility', 'visible');
 				$('.leaflet-tooltip-top').css('font-size', '24px');
 				//$('.leaflet-tooltip-top.secondary').css('visibility', 'hidden');
 			}
@@ -199,10 +220,26 @@ map.on('dblclick', function (e) {
 });
 
 map.on('overlayadd', function (e) {
-	if (e.name === 'Underground') {
-		map.removeLayer(layerGroups.textmarkers);
-	}
+	toggleVisibility(e, 1);
 });
+
+map.on('overlayremove', function (e) {
+	toggleVisibility(e, 2);
+});
+
+function toggleVisibility (e, num) {
+	if (e.name === 'Underground') {
+		//map.removeLayer(layerGroups.textmarkers);
+		
+		if (num == 1) {
+			$('.overworld').css('visibility', 'hidden');
+			$('.underground').css('visibility', 'visible');
+		} else {
+			$('.overworld').css('visibility', 'visible');
+			$('.underground').css('visibility', 'hidden');
+		}
+	}
+}
 
 /*
 map.on('overlayremove', funciton (e) {
