@@ -37,7 +37,7 @@ var textMarkers =
 	"level": "overworld"
 }, {
 	"name": "<span>Mountaintops of the Giants</span>",
-	"coords": [1650,1580],
+	"coords": [1670,1562],
 	"zoom": "region",
 	"level": "overworld"
 }, {
@@ -57,12 +57,32 @@ var textMarkers =
 	"level": "overworld"
 }, {
 	"name": "<span>Stormhill</span>",
-	"coords": [600,900],
+	"coords": [600,920],
 	"zoom": "subregion",
 	"level": "overworld"
 }, {
 	"name": "<span>Mistwood</span>",
 	"coords": [515,1115],
+	"zoom": "subregion",
+	"level": "overworld"
+}, {
+	"name": "<span>Liurnia Marsh</span>",
+	"coords": [927,584],
+	"zoom": "subregion",
+	"level": "overworld"
+}, {
+	"name": "<span>Mountaintops of the Giants</span>",
+	"coords": [1670,1562],
+	"zoom": "subregion",
+	"level": "overworld"
+}, {
+	"name": "<span>Raya Lucaria Academy</span>",
+	"coords": [1040,468],
+	"zoom": "subregion",
+	"level": "overworld"
+}, {
+	"name": "<span>Stormveil Castle</span>",
+	"coords": [630,789],
 	"zoom": "subregion",
 	"level": "overworld"
 }, {
@@ -83,6 +103,31 @@ var textMarkers =
 }, {
 	"name": "<span>Capital Outskirts</span>",
 	"coords": [1490,982],
+	"zoom": "subregion",
+	"level": "overworld"
+}, {
+	"name": "<span>Dragonbarrow</span>",
+	"coords": [738,1457],
+	"zoom": "subregion",
+	"level": "overworld"
+}, {
+	"name": "<span>Caelid Main</span>",
+	"coords": [486,1324],
+	"zoom": "subregion",
+	"level": "overworld"
+}, {
+	"name": "<span>Caria Manor</span>",
+	"coords": [1362,468],
+	"zoom": "subregion",
+	"level": "overworld"
+}, {
+	"name": "<span>Altus Plateau</span>",
+	"coords": [1500,820],
+	"zoom": "subregion",
+	"level": "overworld"
+}, {
+	"name": "<span>Moonlight Altar</span>",
+	"coords": [799,432],
 	"zoom": "subregion",
 	"level": "overworld"
 }, {
@@ -110,6 +155,66 @@ var textMarkers =
 	"coords": [1504,1611],
 	"zoom": "subregion",
 	"level": "overworld"
+}, {
+	"name": "<span>Underground</span>",
+	"coords": [1041,974],
+	"zoom": "whole",
+	"level": "underground"
+}, {
+	"name": "<span>Siofra River</span>",
+	"coords": [615,1338],
+	"zoom": "region",
+	"level": "underground"
+}, {
+	"name": "<span>Mohgwyn Palace</span>",
+	"coords": [587,1441],
+	"zoom": "subregion",
+	"level": "underground"
+}, {
+	"name": "<span>Nokron, Eternal City</span>",
+	"coords": [618,1251],
+	"zoom": "subregion",
+	"level": "underground"
+}, {
+	"name": "<span>Ainsel River</span>",
+	"coords": [1185,629],
+	"zoom": "region",
+	"level": "underground"
+}, {
+	"name": "<span>Lake of Rot</span>",
+	"coords": [1072,470],
+	"zoom": "region",
+	"level": "underground"
+}, {
+	"name": "<span>Nokstella, Eternal City</span>",
+	"coords": [1196,557],
+	"zoom": "subregion",
+	"level": "underground"
+}, {
+	"name": "<span>Grand Cloister</span>",
+	"coords": [1012,468],
+	"zoom": "subregion",
+	"level": "underground"
+}, {
+	"name": "<span>Ainsel River Main</span>",
+	"coords": [1160,660],
+	"zoom": "subregion",
+	"level": "underground"
+}, {
+	"name": "<span>Lake of Rot</span>",
+	"coords": [1083,517],
+	"zoom": "subregion",
+	"level": "underground"
+}, {
+	"name": "<span>Deeproot Depths</span>",
+	"coords": [1430,1087],
+	"zoom": "region",
+	"level": "underground"
+}, {
+	"name": "<span>Deeproot Depths</span>",
+	"coords": [1430,1087],
+	"zoom": "subregion",
+	"level": "underground"
 }]
 
 // GAME MARKERS

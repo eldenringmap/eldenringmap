@@ -122,9 +122,8 @@ function toggle(element, layer) {
 				"stateName": layer,
 				"stateValue": element.checked
 			});
-			localStorage.markerState = JSON.stringify(storageState);
 		}
-		console.log(storageState);
+		localStorage.markerState = JSON.stringify(storageState);
 		
 		// Check if element is ticked
 		if (element.checked) {			
@@ -163,7 +162,7 @@ $(document).ready (function() {
 
 $('.markers-list input').each(function() {
 	this.onchange = function() {
-		//toggle(this, this.id);
+		toggle(this, this.id);
 		console.log(this);
 		console.log(this.id);
 		if (this.id == "textmarkers") {
