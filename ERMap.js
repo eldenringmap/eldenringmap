@@ -163,8 +163,6 @@ $(document).ready (function() {
 $('.markers-list input').each(function() {
 	this.onchange = function() {
 		toggle(this, this.id);
-		console.log(this);
-		console.log(this.id);
 		if (this.id == "textmarkers") {
 			if ($(this.id).is(':checked')) {
 				//$('.leaflet-tooltip-top').css('visibility', 'hidden');

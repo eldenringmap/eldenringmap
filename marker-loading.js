@@ -136,8 +136,6 @@ function initUserLayerGroup() {
 		let storageState = [];
 		storageState = JSON.parse(localStorage.markerState);
 		for (let i = 0; i < storageState.length; i++) {
-			console.log("storageState:");
-			console.log(storageState);
 			$('#'+storageState[i].stateName).prop('checked', storageState[i].stateValue);
 		}
 	} else {
