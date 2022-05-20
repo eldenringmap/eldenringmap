@@ -101,6 +101,7 @@ function toggle(element, layer) {
 			map.addLayer(layerGroups[layer]);
 			if (map.hasLayer(underground)) {
 				map.eachLayer(function (e) {
+					$(e._icon).addClass(e.options.level);
 					if (e.options.level == "overworld") {
 						console.log("OVERWORLD");
 						$('.overworld').css('visibility', 'hidden');
@@ -111,6 +112,7 @@ function toggle(element, layer) {
 				});
 			} else {
 				map.eachLayer(function (e) {
+					$(e._icon).addClass(e.options.level);
 					if (e.options.level == "overworld") {
 						console.log("OVERWORLD");
 						$('.overworld').css('visibility', 'visible');

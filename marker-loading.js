@@ -79,8 +79,8 @@ for (let  i = 0; i < textMarkers.length; i++) {
 		layerGroups.textmarkers = new L.LayerGroup();
 	}
 	// Add the marker
-	let  textMarker = new L.marker(textMarkers[i].coords, { opacity: 1.0, icon: transparentMarker, level: textMarkers[i].level}); //opacity may be set to zero
-	textMarker.bindTooltip(textMarkers[i].name, {permanent: true, direction: "top", className: textMarkers[i].zoom + " " + textMarkers[i].level, attribution: textMarkers[i].level, offset: [0, 0] });
+	let  textMarker = new L.marker(textMarkers[i].coords, {opacity: 1.0, icon: transparentMarker, level: textMarkers[i].level}); //opacity may be set to zero
+	textMarker.bindTooltip(textMarkers[i].name, {permanent: true, direction: "top", className: textMarkers[i].zoom + " " + textMarkers[i].level, offset: [0, 0] });
 	textMarker.addTo(layerGroups.textmarkers); // Adds the text markers to layerGroups.
 }
 /*
@@ -140,6 +140,7 @@ function initUserLayerGroup() {
 			let  iconUrl = storageMarkers[i].icon.options.iconUrl;
 			let  desc = storageMarkers[i].desc;
 			let  region = storageMarkers[i].region;
+			let  level = storageMarkers[i].level;
 			var  group = storageMarkers[i].group;
 				
 			let  markerlink = (url+"?m="+y+","+x+"&name="+name+"&desc="+desc+"&icon="+iconvalue+"&");
@@ -152,7 +153,7 @@ function initUserLayerGroup() {
 				iconAnchor: storageMarkers[i].icon.options.iconAnchor,
 				popupAnchor:  storageMarkers[i].icon.options.popupAnchor,
 				tooltipAnchor: storageMarkers[i].icon.options.tooltipAnchor,
-				className: storageMarkers[i].icon.options.className,
+				//className: storageMarkers[i].icon.options.className,
 			});
 			
 			// User marker content
@@ -190,9 +191,9 @@ function initUserLayerGroup() {
 			if (layerGroups[group] == undefined) {
 				layerGroups[group] = new L.LayerGroup();
 			}
-			let  marker = new L.marker([x, y], {draggable: false,icon: customIcon,title: group}).bindPopup(popupcontent);
-			//marker.on("dragend", dragedMarker);
-			marker.bindTooltip((name), {permanent: true, direction: 'bottom', offset: L.point(0,0)}).openTooltip();
+			let  marker = new L.marker([x, y], {draggable: false, icon: customIcon, title: group, level: level});
+			marker.bindPopup(popupcontent);
+			marker.bindTooltip((name), {permanent: true, direction: 'bottom', offset: L.point(0,0), className: level});
 			marker.on("popupopen", onPopupOpen);
 			marker.addTo(layerGroups[group]);
 			markersUser.push(marker);
@@ -402,7 +403,8 @@ function addMarkerText(lat,long) {
 					<td>Y:<input type="text" name="mlat" id="mlat" maxlength="5" value="'+lat+'" onKeyPress="return numonly(this,event)"></td>\
 				</tr>\
 			</table>\
-			<input type="hidden" id="grouptype" name="group" value="grace"\
+			<input type="hidden" id="grouptype" name="group" value="grace">\
+			<input type="hidden" id="className" name="level" value="overworld">\
 			<input type="hidden" name="submit" value="true">\
 			<button type="submit" class="send">Add</button>\
 		</form>';
@@ -424,6 +426,12 @@ function addMarkerText(lat,long) {
 		let  storageMarkers = [];
 		let  markersUser = [];
 
+		var level = "overworld";
+		if (map.hasLayer(underground) == true) {
+			level = "underground";
+		};
+		console.log(level);
+
 		if (localStorage.mapUserMarkers !== undefined) {
 			storageMarkers = JSON.parse(localStorage.mapUserMarkers);
 		}
@@ -437,7 +445,8 @@ function addMarkerText(lat,long) {
 			"icon": markerIconTypes[getAObj(postData,"icon")],
 			"iconvalue": getAObj(postData,"icon"),
 			"desc": getAObj(postData,"desc"),
-			"group": getAObj(postData,"group")
+			"group": getAObj(postData,"group"),
+			"level": level
 		});
 		popup.close();
 		
@@ -475,10 +484,10 @@ function addMarkerText(lat,long) {
 			<button class="no">No</button>\
 		</div>'
 		
-		let  newMarker = new L.marker({lat: lat, lng: lon},{draggable: false,icon: markerIconTypes[getAObj(postData,"icon")], title: getAObj(postData,'group')});
+		let  newMarker = new L.marker({lat: lat, lng: lon},{draggable: false,icon: markerIconTypes[getAObj(postData,"icon")], title: getAObj(postData,'group'), level: level});
 		newMarker.bindPopup(popupcontent);
+		newMarker.bindTooltip(getAObj(postData, 'name'), {permanent: true, direction: 'bottom', offset: L.point(0,0), className: level}).openTooltip();
 		newMarker.addTo(map);
-		newMarker.bindTooltip(getAObj(postData, 'name'), {permanent: true, direction: 'bottom', offset: L.point(0,0)}).openTooltip();
 		newMarker.on("popupopen", onPopupOpen);
 		markersUser.push(newMarker);
 			console.log(groupUser);
@@ -488,6 +497,8 @@ function addMarkerText(lat,long) {
 			layerGroups[getAObj(postData,'group')] = new L.layerGroup();
 		}
 		map.addLayer(layerGroups[getAObj(postData,'group')]);
+		$(newMarker._icon).addClass(level);
+		console.log(storageMarkers);
 		e.preventDefault();
 	});
 }
