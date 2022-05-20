@@ -124,9 +124,26 @@ let  groupUser = [];
 initUserLayerGroup();
 function initUserLayerGroup() {
 	let markersUser = [];
+	// Create mapUserMarkers if undefined
 	if (localStorage.mapUserMarkers == "undefined") {
 		localStorage.mapUserMarkers = "[]";
 	}
+	if (localStorage.markerState == "undefined") {
+		localStorage.markerState = "[]";
+	}
+	
+	if (localStorage.markerState !== undefined) {
+		let storageState = [];
+		storageState = JSON.parse(localStorage.markerState);
+		for (let i = 0; i < storageState.length; i++) {
+			console.log("storageState:");
+			console.log(storageState);
+			$('#'+storageState[i].stateName).prop('checked', storageState[i].stateValue);
+		}
+	} else {
+		localStorage.markerState = "[]";
+	}
+	
 	if (localStorage.mapUserMarkers !== undefined) {
 		let  storageMarkers = [];
 		storageMarkers = JSON.parse(localStorage.mapUserMarkers);
@@ -426,11 +443,10 @@ function addMarkerText(lat,long) {
 		let  storageMarkers = [];
 		let  markersUser = [];
 
-		var level = "overworld";
+		let level = "overworld";
 		if (map.hasLayer(underground) == true) {
 			level = "underground";
 		};
-		console.log(level);
 
 		if (localStorage.mapUserMarkers !== undefined) {
 			storageMarkers = JSON.parse(localStorage.mapUserMarkers);

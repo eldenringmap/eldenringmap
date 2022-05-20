@@ -96,17 +96,45 @@ sidebar.open('home');
 
 // Marker Toggle
 function toggle(element, layer) {
+	// Make sure the group exists
 	if (layerGroups[layer] != undefined) {
-		if (element.checked) {
+		// Add state to local storage
+		let storageState = [];
+		let match = false;
+		// Read local storage json
+		if (localStorage.markerState !== undefined) {
+			storageState = JSON.parse(localStorage.markerState);
+		}
+		// Loop through state length
+		for (let i = 0; i < storageState.length; i++) {
+			if (storageState[i].stateName == layer) {
+				// Change stateValue
+				storageState[i].stateValue = element.checked;
+				// Confirm matching name
+				match = true;
+				// Break loop
+				i = storageState.length;
+			}
+		}
+		// Save data to local storage
+		if (match == false) {
+			storageState.push({
+				"stateName": layer,
+				"stateValue": element.checked
+			});
+			localStorage.markerState = JSON.stringify(storageState);
+		}
+		console.log(storageState);
+		
+		// Check if element is ticked
+		if (element.checked) {			
 			map.addLayer(layerGroups[layer]);
 			if (map.hasLayer(underground)) {
 				map.eachLayer(function (e) {
 					$(e._icon).addClass(e.options.level);
 					if (e.options.level == "overworld") {
-						console.log("OVERWORLD");
 						$('.overworld').css('visibility', 'hidden');
 					} else if (e.options.level == "underground") {
-						console.log("UNDERGROUND");
 						$('.underground').css('visibility', 'visible');
 					}
 				});
@@ -114,10 +142,8 @@ function toggle(element, layer) {
 				map.eachLayer(function (e) {
 					$(e._icon).addClass(e.options.level);
 					if (e.options.level == "overworld") {
-						console.log("OVERWORLD");
 						$('.overworld').css('visibility', 'visible');
 					} else if (e.options.level == "underground") {
-						console.log("UNDERGROUND");
 						$('.underground').css('visibility', 'hidden');
 					}
 				});
@@ -129,9 +155,17 @@ function toggle(element, layer) {
 	}
 }
 
+// Run after page load
+$(document).ready (function() {
+	// Cycle through each marker-list input
+	$('.markers-list input').each(function() {toggle(this, this.id);});
+});
+
 $('.markers-list input').each(function() {
 	this.onchange = function() {
-		toggle(this, this.id);
+		//toggle(this, this.id);
+		console.log(this);
+		console.log(this.id);
 		if (this.id == "textmarkers") {
 			if ($(this.id).is(':checked')) {
 				//$('.leaflet-tooltip-top').css('visibility', 'hidden');
